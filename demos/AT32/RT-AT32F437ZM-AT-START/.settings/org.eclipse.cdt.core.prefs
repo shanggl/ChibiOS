@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/0.114656749/PATH/delimiter=;
+environment/project/0.114656749/PATH/operation=append
+environment/project/0.114656749/PATH/value=D\:\\AT32IDE\\platform\\tools\\Build Tools\\bin;D\:\\AT32IDE\\platform\\tools\\gcc-arm-none-eabi-10.3-2021.10\\bin;D\:/AT32IDE//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.2.v20220201-1208/jre/bin/server;D\:/AT32IDE//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.2.v20220201-1208/jre/bin;C\:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C\:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C\:\\Windows\\system32;C\:\\Windows;C\:\\Windows\\System32\\Wbem;C\:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Windows\\System32\\OpenSSH\\;D\:\\Program Files\\TortoiseSVN\\bin;C\:\\Program Files (x86)\\Kaspersky Lab\\KES.11.11.0\\;C\:\\Users\\juntan\\AppData\\Local\\Microsoft\\WindowsApps;F\:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 7.2\\common\\bin;C\:\\Program Files (x86)\\Java\\jre1.8.0_212\\bin;;d\:\\Program Files\\JetBrains\\PyCharm Community Edition 2019.2.1\\bin;;D\:\\AT32IDE
+environment/project/0.114656749/append=true
+environment/project/0.114656749/appendContributed=true

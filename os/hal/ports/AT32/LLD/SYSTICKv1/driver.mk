@@ -1,0 +1,4 @@
+PLATFORMSRC += $(CHIBIOS)/os/hal/ports/AT32/LLD/SYSTICKv1/hal_st_lld.c
+
+PLATFORMINC += $(CHIBIOS)/os/hal/ports/AT32/LLD/SYSTICKv1
+
