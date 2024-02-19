@@ -461,6 +461,8 @@ typedef enum {ERROR = 0, SUCCESS = !ERROR} error_status;
 #define USD_BASE                         ((uint32_t)0x1FFFC000)
 #define FLASH_BASE                       ((uint32_t)0x08000000)
 
+#define UID_BASE                         ((uint32_t)0x1FFFF7E8)
+
 #define DEBUG_BASE                       ((uint32_t)0xE0042000)
 
 #define APB1PERIPH_BASE                  (PERIPH_BASE)
