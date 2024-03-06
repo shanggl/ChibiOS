@@ -1159,6 +1159,7 @@ size_t uart_lld_stop_receive(UARTDriver *uartp) {
  * @param[in] uartp     pointer to the @p UARTDriver object
  */
 void uart_lld_serve_interrupt(UARTDriver *uartp) {
+if (uartp->config->irq_cb == NULL) {
   uint16_t sr;
   usart_type *u = uartp->usart;
   uint32_t cr1 = u->ctrl1;
@@ -1185,6 +1186,9 @@ void uart_lld_serve_interrupt(UARTDriver *uartp) {
   if ((cr1 & USART_CR1_IDLEIE) && (sr & USART_SR_IDLE)) {
     _uart_timeout_isr_code(uartp);
   }
+}else{
+  uartp->config->irq_cb(uartp);
+}
 }
 
 #endif /* HAL_USE_UART */

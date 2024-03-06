@@ -94,7 +94,9 @@ static const SerialConfig default_config =
   SERIAL_DEFAULT_BITRATE,
   0,
   USART_CR2_STOP1_BITS,
-  0
+  0,
+  NULL,
+  NULL
 };
 
 /*===========================================================================*/
