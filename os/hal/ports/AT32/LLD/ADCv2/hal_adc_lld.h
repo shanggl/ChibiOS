@@ -136,6 +136,7 @@
 #define ADC_SAMPLE_92_5          5   /**< @brief 92.5 cycles sampling time.   */
 #define ADC_SAMPLE_247_5         6   /**< @brief 247.5 cycles sampling time.   */
 #define ADC_SAMPLE_640_5         7   /**< @brief 640.5 cycles sampling time.   */
+#define ADC_SAMPLE_480           ADC_SAMPLE_640_5   /**< @brief 640.5 cycles sampling time.   */
 /** @} */
 
 /*===========================================================================*/
