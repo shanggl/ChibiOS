@@ -657,6 +657,9 @@ typedef struct hal_serial_config {
 #define USART_CR2_STOP0P5_BITS  (1 << 12)   /**< @brief CR2 0.5 stop bit value.*/
 #define USART_CR2_STOP2_BITS    (2 << 12)   /**< @brief CR2 2 stop bit value.*/
 #define USART_CR2_STOP1P5_BITS  (3 << 12)   /**< @brief CR2 1.5 stop bit value.*/
+#define USART_CR2_SWAP_Pos           (15U)
+#define USART_CR2_SWAP_Msk           (0x1UL << USART_CR2_SWAP_Pos)             /*!< 0x00008000 */
+#define USART_CR2_SWAP               USART_CR2_SWAP_Msk                        /*!< SWAP TX/RX pins */
 
 /*===========================================================================*/
 /* External declarations.                                                    */
