@@ -115,6 +115,7 @@
 #define STM32_TIM_DIER_TIE                  (1U << 6)
 #define STM32_TIM_DIER_BIE                  (1U << 7)
 #define STM32_TIM_DIER_UDE                  (1U << 8)
+#define TIM_DIER_UDE STM32_TIM_DIER_UDE
 #define STM32_TIM_DIER_CC1DE                (1U << 9)
 #define STM32_TIM_DIER_CC2DE                (1U << 10)
 #define STM32_TIM_DIER_CC3DE                (1U << 11)

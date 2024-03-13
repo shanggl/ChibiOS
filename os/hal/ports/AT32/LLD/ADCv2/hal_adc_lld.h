@@ -53,8 +53,8 @@
 /**
  * @brief   Maximum ADC clock frequency.
  */
-#if defined(STM32F4XX) || defined(__DOXYGEN__)
-#define STM32_ADCCLK_MAX        36000000
+#if defined(AT32F4) || defined(__DOXYGEN__)
+#define STM32_ADCCLK_MAX        80000000
 #else
 #define STM32_ADCCLK_MAX        30000000
 #endif

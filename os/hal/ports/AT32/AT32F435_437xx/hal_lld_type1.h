@@ -77,10 +77,10 @@
 #define STM32_LSECLK_MAX        32768
 #define STM32_LSECLK_BYP_MAX    1000000
 #define STM32_LSECLK_MIN        32768
-#define STM32_PLLIN_MAX         2100000
-#define STM32_PLLIN_MIN         950000
-#define STM32_PLLVCO_MAX        432000000
-#define STM32_PLLVCO_MIN        100000000
+#define STM32_PLLIN_MAX         16000000
+#define STM32_PLLIN_MIN         2000000
+#define STM32_PLLVCO_MAX        1200000000
+#define STM32_PLLVCO_MIN        500000000
 #define STM32_PLLOUT_MAX        2880000000
 #define STM32_PLLOUT_MIN        12500000
 #define STM32_PLLI2SOUT_MAX     216000000
@@ -1175,7 +1175,7 @@
 /**
  * @brief   STM32_PLLM field.
  */
-#if ((STM32_PLLM_VALUE >= 2) && (STM32_PLLM_VALUE <= 63)) ||                \
+#if ((STM32_PLLM_VALUE >= 1) && (STM32_PLLM_VALUE <= 63)) ||                \
     defined(__DOXYGEN__)
 #define STM32_PLLM                  (STM32_PLLM_VALUE << 0)
 #else
@@ -1458,7 +1458,7 @@
 /**
  * @brief   STM32_PLLI2SM field.
  */
-#if ((STM32_PLLI2SM_VALUE >= 2) && (STM32_PLLI2SM_VALUE <= 63)) ||          \
+#if ((STM32_PLLI2SM_VALUE >= 1) && (STM32_PLLI2SM_VALUE <= 63)) ||          \
     defined(__DOXYGEN__)
 #define STM32_PLLI2SM               (STM32_PLLI2SM_VALUE << 0)
 #else
