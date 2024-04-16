@@ -60,7 +60,7 @@
  * @api
  */
 #define rccEnablePeriph(mask, lp) {                                           \
-  crm_periph_clock_enable(mask, TRUE);                                       \
+  crm_periph_clock_enable(mask, TRUE1);                                       \
 }
 
 /**
@@ -71,7 +71,7 @@
  * @api
  */
 #define rccDisablePeriph(mask) {											      \
-	crm_periph_clock_enable(mask, FALSE);                                     \
+	crm_periph_clock_enable(mask, FALSE1);                                     \
 }
 //#define rccDisableAPB1(mask) {
 //  RCC->APB1ENR &= ~(mask);
@@ -87,8 +87,8 @@
  * @api
  */
 #define rccResetPeriph(mask){													  \
-	crm_periph_reset(mask, TRUE);											  \
-	crm_periph_reset(mask, FALSE);											  \
+	crm_periph_reset(mask, TRUE1);											  \
+	crm_periph_reset(mask, FALSE1);											  \
 }
 
 
@@ -101,7 +101,7 @@
  * @api
  */
 #define rccEnableAPB1(mask, lp) {                                           \
-  crm_periph_clock_enable(mask, TRUE);                                       \
+  crm_periph_clock_enable(mask, TRUE1);                                       \
 }
 
 /**
@@ -112,7 +112,7 @@
  * @api
  */
 #define rccDisableAPB1(mask) {											      \
-	crm_periph_clock_enable(mask, FALSE);                                     \
+	crm_periph_clock_enable(mask, FALSE1);                                     \
 }
 //#define rccDisableAPB1(mask) {
 //  RCC->APB1ENR &= ~(mask);
@@ -128,8 +128,8 @@
  * @api
  */
 #define rccResetAPB1(mask){													  \
-	crm_periph_reset(mask, TRUE);											  \
-	crm_periph_reset(mask, FALSE);											  \
+	crm_periph_reset(mask, TRUE1);											  \
+	crm_periph_reset(mask, FALSE1);											  \
 }
 //#define rccResetAPB1(mask) {
 //  RCC->APB1RSTR |= (mask);
@@ -146,7 +146,7 @@
  * @api
  */
 #define rccEnableAPB2(mask, lp){                                           \
-	 crm_periph_clock_enable(mask, TRUE);                                  \
+	 crm_periph_clock_enable(mask, TRUE1);                                  \
 }
 //#define rccEnableAPB2(mask, lp) {
 //  RCC->APB2ENR |= (mask);
@@ -165,7 +165,7 @@
  * @api
  */
 #define rccDisableAPB2(mask){											      \
-	crm_periph_clock_enable(mask, FALSE);                                     \
+	crm_periph_clock_enable(mask, FALSE1);                                     \
 }
 //#define rccDisableAPB2(mask) {
 //  RCC->APB2ENR &= ~(mask);
@@ -181,8 +181,8 @@
  * @api
  */
 #define rccResetAPB2(mask){													  \
-	crm_periph_reset(mask, TRUE);											  \
-	crm_periph_reset(mask, FALSE);											  \
+	crm_periph_reset(mask, TRUE1);											  \
+	crm_periph_reset(mask, FALSE1);											  \
 }
 //#define rccResetAPB2(mask) {
 //  RCC->APB2RSTR |= (mask);
