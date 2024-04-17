@@ -52,18 +52,7 @@
 #define ST_NUMBER                           STM32_TIM2_NUMBER
 #define ST_CLOCK_SRC                        STM32_TIMCLK1
 #define ST_ENABLE_CLOCK()                   rccEnableTIM2(true)
-#if defined(STM32F1XX)
-#define ST_ENABLE_STOP()                    DBGMCU->CR |= DBGMCU_CR_DBG_TIM2_STOP
-#elif defined(STM32L4XX) || defined(STM32L4XXP) || defined(STM32G4XX) ||    \
-      defined(STM32L5XX) || defined(STM32WBXX) || defined(STM32WLXX)
-#define ST_ENABLE_STOP()                    DBGMCU->APB1FZR1 |= DBGMCU_APB1FZR1_DBG_TIM2_STOP
-#elif defined(STM32G0XX)
-#define ST_ENABLE_STOP()                    DBG->APBFZ1 |= DBG_APB_FZ1_DBG_TIM2_STOP
-#elif defined(STM32H7XX)
-#define ST_ENABLE_STOP()                    DBGMCU->APB1LFZ1 |= DBGMCU_APB1LFZ1_DBG_TIM2
-#else
-#define ST_ENABLE_STOP()                    //DBGMCU->APB1FZ |= DBGMCU_APB1_FZ_DBG_TIM2_STOP
-#endif
+#define ST_ENABLE_STOP()                    debug_apb1_periph_mode_set(DEBUG_TMR2_PAUSE,TRUE1);
 
 #elif STM32_ST_USE_TIMER == 3
 
@@ -506,45 +495,45 @@ OSAL_IRQ_HANDLER(SysTick_Handler) {
  */
 void st_lld_init(void) {
 
-//#if OSAL_ST_MODE == OSAL_ST_MODE_FREERUNNING
-//  /* Free running counter mode.*/
-//  osalDbgAssert((ST_CLOCK_SRC % OSAL_ST_FREQUENCY) == 0U,
-//                "clock rounding error");
-//  osalDbgAssert(((ST_CLOCK_SRC / OSAL_ST_FREQUENCY) - 1U) < 0x10000,
-//                "clock prescaler overflow");
-//
-//  /* Enabling timer clock.*/
-//  ST_ENABLE_CLOCK();
-//
-//  /* Enabling the stop mode during debug for this timer.*/
-//  ST_ENABLE_STOP();
-//
-//  /* Initializing the counter in free running mode.*/
-//  STM32_ST_TIM->PSC    = (ST_CLOCK_SRC / OSAL_ST_FREQUENCY) - 1;
-//  STM32_ST_TIM->ARR    = ST_ARR_INIT;
-//  STM32_ST_TIM->CCMR1  = 0;
-//  STM32_ST_TIM->CCR[0] = 0;
-//#if ST_LLD_NUM_ALARMS > 1
-//  STM32_ST_TIM->CCR[1] = 0;
-//#endif
-//#if ST_LLD_NUM_ALARMS > 2
-//  STM32_ST_TIM->CCR[2] = 0;
-//#endif
-//#if ST_LLD_NUM_ALARMS > 3
-//  STM32_ST_TIM->CCR[3] = 0;
-//#endif
-//  STM32_ST_TIM->DIER   = 0;
-//  STM32_ST_TIM->CR2    = 0;
-////  STM32_ST_TIM->EGR    = TIM_EGR_UG;
-////  STM32_ST_TIM->CR1    = TIM_CR1_CEN;
-//
-//#if !defined(STM32_SYSTICK_SUPPRESS_ISR)
-//  /* IRQ enabled.*/
-//  nvicEnableVector(ST_NUMBER, STM32_ST_IRQ_PRIORITY);
-//#endif
-//#endif /* OSAL_ST_MODE == OSAL_ST_MODE_FREERUNNING */
+#if OSAL_ST_MODE == OSAL_ST_MODE_FREERUNNING
+ /* Free running counter mode.*/
+ osalDbgAssert((ST_CLOCK_SRC % OSAL_ST_FREQUENCY) == 0U,
+               "clock rounding error");
+ osalDbgAssert(((ST_CLOCK_SRC / OSAL_ST_FREQUENCY) - 1U) < 0x10000,
+               "clock prescaler overflow");
 
-//#if OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC
+ /* Enabling timer clock.*/
+ ST_ENABLE_CLOCK();
+
+ /* Enabling the stop mode during debug for this timer.*/
+ ST_ENABLE_STOP();
+
+ /* Initializing the counter in free running mode.*/
+ STM32_ST_TIM->PSC    = (ST_CLOCK_SRC / OSAL_ST_FREQUENCY) - 1;
+ STM32_ST_TIM->ARR    = ST_ARR_INIT;
+ STM32_ST_TIM->CCMR1  = 0;
+ STM32_ST_TIM->CCR[0] = 0;
+#if ST_LLD_NUM_ALARMS > 1
+ STM32_ST_TIM->CCR[1] = 0;
+#endif
+#if ST_LLD_NUM_ALARMS > 2
+ STM32_ST_TIM->CCR[2] = 0;
+#endif
+#if ST_LLD_NUM_ALARMS > 3
+ STM32_ST_TIM->CCR[3] = 0;
+#endif
+ STM32_ST_TIM->DIER   = 0;
+ STM32_ST_TIM->CR2    = 0;
+ STM32_ST_TIM->EGR    = STM32_TIM_EGR_UG;
+ STM32_ST_TIM->CR1    = STM32_TIM_CR1_CEN|AT32_TMR_CR1_PMEN;
+
+#if !defined(STM32_SYSTICK_SUPPRESS_ISR)
+ /* IRQ enabled.*/
+ nvicEnableVector(ST_NUMBER, STM32_ST_IRQ_PRIORITY);
+#endif
+#endif /* OSAL_ST_MODE == OSAL_ST_MODE_FREERUNNING */
+
+#if OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC
   /* Periodic systick mode, the Cortex-Mx internal systick timer is used
      in this mode.*/
 //  SysTick->LOAD = (SYSTICK_CK / OSAL_ST_FREQUENCY) - 1;
@@ -557,7 +546,7 @@ void st_lld_init(void) {
 
   /* IRQ enabled.*/
   nvicSetSystemHandlerPriority(HANDLER_SYSTICK, STM32_ST_IRQ_PRIORITY);
-//#endif /* OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC */
+#endif /* OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC */
 }
 
 /**

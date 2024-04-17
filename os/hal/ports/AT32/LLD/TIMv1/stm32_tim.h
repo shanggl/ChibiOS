@@ -47,7 +47,8 @@
 
 #define STM32_TIM_CR1_CKD_MASK              (3U << 8)
 #define STM32_TIM_CR1_CKD(n)                ((n) << 8)
-
+//ONLY TMR2 TMR5 CAN EXTEND TO 32 BIT MODE 
+#define AT32_TMR_CR1_PMEN                   (1U << 10)
 #define STM32_TIM_CR1_UIFREMAP              (1U << 11)
 /** @} */
 
@@ -505,16 +506,16 @@
  *          necessarily all registers and bits.
  */
 typedef struct {
-  volatile uint32_t     CR1;
-  volatile uint32_t     CR2;
-  volatile uint32_t     SMCR;
-  volatile uint32_t     DIER;
-  volatile uint32_t     SR;
-  volatile uint32_t     EGR;
-  volatile uint32_t     CCMR1;
-  volatile uint32_t     CCMR2;
-  volatile uint32_t     CCER;
-  volatile uint32_t     CNT;
+  volatile uint32_t     CR1;//ctrl_1
+  volatile uint32_t     CR2;//ctrl_2
+  volatile uint32_t     SMCR;//STctrl
+  volatile uint32_t     DIER;//TMRx_IDEN
+  volatile uint32_t     SR;//TMRx_ISTS
+  volatile uint32_t     EGR;//TMRx_SWEVT
+  volatile uint32_t     CCMR1;//TMRx_CM1
+  volatile uint32_t     CCMR2;//TMRx_CM2
+  volatile uint32_t     CCER;//TMRx_CCTRL
+  volatile uint32_t     CNT;//TMRx_CVAL
   volatile uint32_t     PSC;
   volatile uint32_t     ARR;
   volatile uint32_t     RCR;
